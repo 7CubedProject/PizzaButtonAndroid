@@ -10,4 +10,11 @@
 		android:layout_height="100px"
 		android:layout_gravity="center_horizontal"
 		android:text="PIZZA"/>
+<TextView 
+	android:text="We'll get your basic delivery info next"
+	android:layout_gravity="center_horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:gravity="center"/>
+	
 </LinearLayout>
