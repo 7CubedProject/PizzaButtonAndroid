@@ -3,10 +3,11 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center_vertical"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+<Button android:id="@+id/pizza"
+		android:layout_width="100px"
+		android:layout_height="100px"
+		android:layout_gravity="center_horizontal"
+		android:text="PIZZA"/>
 </LinearLayout>
