@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -32,20 +33,18 @@ public class orderpizza extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
 
-        Button button = (Button)findViewById(R.id.pizza);
-        button.setOnClickListener((android.view.View.OnClickListener) pizzaButtonListener);
-
-        loadPageInfo();
-
-        /*JSONObject rootObject = json.getJSONObject(ROOT_KEY);
-        int intValues = rootObject.getInt(INT_VALUE_NAME);*/
+        loadPage(R.layout.main);
+        // do shit to the page
+        // get a list of pizzas and display them
+        // how can do this?
+        //getPizzaTypes();
+        bindButtonToListener(R.id.pizza, pizzaButtonListener);
     }
 
     private OnClickListener pizzaButtonListener = new OnClickListener() {
     	public void onClick(View v) {
-    		setContentView(R.layout.info);
+    		loadPage(R.layout.info);
     	}
     };
 
@@ -63,4 +62,24 @@ public class orderpizza extends Activity {
         	Log.v(TAG, "Error parsing JSON: "+e);
         }
     }
+    
+    ///////
+    private void loadPage(int id) {
+    	setContentView(id);
+    }
+    
+    private void setTextById(int id, String text) {
+        TextView textObj = (TextView)findViewById(id);
+        textObj.setText(text);
+    }
+      
+    private String getTextById(int id) {
+    	TextView textObj = (TextView)findViewById(id);
+        return textObj.getText().toString();
+    }
+    
+    private void bindButtonToListener(int id, OnClickListener listener) {
+        Button button = (Button)findViewById(id);
+        button.setOnClickListener(listener);
+    }  
 }
