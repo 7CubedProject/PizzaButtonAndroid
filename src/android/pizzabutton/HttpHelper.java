@@ -19,7 +19,7 @@ import android.util.Log;
 
 public class HttpHelper {
 	/**
-	 * 
+	 *
 	 * @param url 	the url to execute the post to
 	 * @param nameValuePairs	the parameters of the post
 	 * @return		the text of the response from the call, or the empty
@@ -28,46 +28,50 @@ public class HttpHelper {
 	public static String doHttpPost(String url, List<NameValuePair> nameValuePairs) {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    HttpPost httppost = new HttpPost(url);
-	    
+
 	    try {
 	      httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 	      HttpResponse response = httpclient.execute(httppost);
-	      
+
 	      return getHttpResponseText(response);
 	    } catch (ClientProtocolException e) {
-	      // TODO 
+	      // TODO
 	    } catch (IOException e) {
 	      // TODO
 	    }
 	    return "";
 	  }
-	  
+
 	  public static String doHttpGet(String url, List<NameValuePair> nameValuePairs) {
 	    HttpClient httpclient = new DefaultHttpClient();
 
 	    StringBuilder uriBuilder = new StringBuilder();
 	    uriBuilder.append(url);
-	    uriBuilder.append("?");
-	    for (NameValuePair pair : nameValuePairs) {
-	      Log.v("test", pair.getValue() + "X");
-	      uriBuilder.append(pair.getName() + "=" + pair.getValue() + "&");
+	    if (null != nameValuePairs) {
+		    uriBuilder.append("?");
+		    for (NameValuePair pair : nameValuePairs) {
+		      Log.v("test", pair.getValue() + "X");
+		      uriBuilder.append(pair.getName() + "=" + pair.getValue() + "&");
+		    }
 	    }
 
 	    Log.v("test", uriBuilder.toString());
-	    
+
 	    HttpGet request = new HttpGet(uriBuilder.toString());
 	    try {
 	      HttpResponse response = httpclient.execute(request);
 	      return getHttpResponseText(response);
 	    } catch (ClientProtocolException e) {
+	    	Log.v("test", "Error"+e);
 	      // TODO if I fell like it
 	    } catch (IOException e) {
+	    	Log.v("test", "Error"+e);
 	      // TODO if I feel like it
 	    }
-	    
+
 	    return "";
 	  }
-	  
+
 	  public static String getHttpResponseText(HttpResponse response) {
 	    try {
 	      InputStream in = response.getEntity().getContent();
@@ -82,6 +86,6 @@ public class HttpHelper {
 	    } catch (IOException e){
 	      // TODO if I feel like it
 	    }
-	    return ""; 
+	    return "";
 	  }
 }
